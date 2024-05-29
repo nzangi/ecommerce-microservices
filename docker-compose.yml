@@ -37,8 +37,8 @@ services:
     volumes:
       - mongo:/data
     environment:
-      MONGO_INIT_DB_ROOT_USERNAME: root
-      MONGO_INIT_DB_ROOT_PASSWORD: root
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
 
   mongo-express:
     image: mongo-express
@@ -58,8 +58,6 @@ services:
     ports:
       - 1080:1080
       - 1025:1025
-
-
 
 networks:
   microservices-net:
