@@ -44,6 +44,23 @@ services:
       - 1080:1080
       - 1025:1025
 
+  customer-service:
+    image: customer-service:latest
+    container_name: ms_customer_service
+    ports:
+      - 8094:8094
+    environment:
+      - SPRING_DATA_MONGODB_USERNAME=root
+      - SPRING_DATA_MONGODB_PASSWORD=root
+      - SPRING_DATA_MONGODB_HOST=mongodb
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=admin
+      - SPRING_DATA_MONGODB_DATABASE=customer
+    networks:
+      - microservices-net
+    depends_on:
+      - mongodb
+
 networks:
   microservices-net:
     driver: bridge
