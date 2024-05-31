@@ -19,6 +19,8 @@ services:
     image: mongo
     ports:
       - 27017:27017
+    networks:
+      - microservices-net
     volumes:
       - mongo:/data
     environment:
@@ -43,6 +45,17 @@ services:
     ports:
       - 1080:1080
       - 1025:1025
+    networks:
+      - microservices-net
+
+  service-registry:
+    image: service-registry:latest
+    container_name: ms_service-registry
+    ports:
+      - 8688:8688
+    networks:
+      - microservices-net
+
 
   customer-service:
     image: customer-service:latest
@@ -56,6 +69,7 @@ services:
       - SPRING_DATA_MONGODB_PORT=27017
       - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=admin
       - SPRING_DATA_MONGODB_DATABASE=customer
+
     networks:
       - microservices-net
     depends_on:
