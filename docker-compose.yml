@@ -48,32 +48,32 @@ services:
     networks:
       - microservices-net
 
-  service-registry:
-    image: service-registry:latest
-    container_name: ms_service-registry
-    ports:
-      - 8688:8688
-    networks:
-      - microservices-net
-
-
-  customer-service:
-    image: customer-service:latest
-    container_name: ms_customer_service
-    ports:
-      - 8094:8094
-    environment:
-      - SPRING_DATA_MONGODB_USERNAME=root
-      - SPRING_DATA_MONGODB_PASSWORD=root
-      - SPRING_DATA_MONGODB_HOST=mongodb
-      - SPRING_DATA_MONGODB_PORT=27017
-      - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=admin
-      - SPRING_DATA_MONGODB_DATABASE=customer
-
-    networks:
-      - microservices-net
-    depends_on:
-      - mongodb
+#  service-registry:
+#    image: service-registry:latest
+#    container_name: ms_service-registry
+#    ports:
+#      - 8688:8688
+#    networks:
+#      - microservices-net
+#
+#
+#  customer-service:
+#    image: customer-service:latest
+#    container_name: ms_customer_service
+#    ports:
+#      - 8094:8094
+#    environment:
+#      - SPRING_DATA_MONGODB_USERNAME=root
+#      - SPRING_DATA_MONGODB_PASSWORD=root
+#      - SPRING_DATA_MONGODB_HOST=mongodb
+#      - SPRING_DATA_MONGODB_PORT=27017
+#      - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=admin
+#      - SPRING_DATA_MONGODB_DATABASE=customer
+#
+#    networks:
+#      - microservices-net
+#    depends_on:
+#      - mongodb
 
 networks:
   microservices-net:

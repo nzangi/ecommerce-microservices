@@ -13,6 +13,5 @@ RUN ls -l /home/app/target
 # Stage 2: Run the application
 FROM openjdk:17-jdk-alpine
 WORKDIR /app
-COPY --from=build /home/app/target/*.jar app.jar
 EXPOSE 8094
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "/home/app/target/customer-service.jar"]
