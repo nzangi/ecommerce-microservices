@@ -1,0 +1,28 @@
+server:
+  port: 8765
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8778/eureka/
+  instance:
+    hostname: localhost
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/product
+    username: nzangi
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+    baseline-description: "init"
+    baseline-version: 0
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}

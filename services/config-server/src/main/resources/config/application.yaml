@@ -1,0 +1,14 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8778/eureka/
+  instance:
+    hostname: localhost
+
+
+#name:
+#  value: nzangi
+spring:
+  cloud:
+    config:
+      override-system-properties: false
