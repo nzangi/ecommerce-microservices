@@ -20,4 +20,3 @@ create sequence  if not exists  category_seq increment by 50;
 create sequence  if not exists  product_seq increment by 50;
 
 delete from flyway_schema_history where version = '1';
-select * from category;
