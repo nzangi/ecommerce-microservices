@@ -1,0 +1,27 @@
+server:
+  port: 8070
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8778/eureka/
+  instance:
+    hostname: localhost
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/order
+    username: nzangi
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+application:
+  config:
+    customer-url: http://localhost:8094/api/v1/customers
+    payment-url: http://localhost:8765/api/v1/payments
+    product-url: http://localhost:8765/api/v1/products
