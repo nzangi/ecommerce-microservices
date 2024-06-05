@@ -1,10 +1,12 @@
 package com.nzangi.ecommerce.kafka;
 
+import com.nzangi.ecommerce.email.EmailService;
 import com.nzangi.ecommerce.kafka.order.OrderConfirmation;
 import com.nzangi.ecommerce.kafka.payment.PaymentConfirmation;
 import com.nzangi.ecommerce.notification.Notification;
 import com.nzangi.ecommerce.notification.NotificationRepository;
 import com.nzangi.ecommerce.notification.NotificationType;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +21,9 @@ import java.time.LocalDateTime;
 public class NotificationConsumer {
     private static final Logger log = LoggerFactory.getLogger(NotificationConsumer.class);
     private final NotificationRepository notificationRepository;
-//    private final EmailService emailService;
+    private final EmailService emailService;
     @KafkaListener(topics = "payment-topic")
-    public void consumePaymentSuccessNotification(PaymentConfirmation paymentConfirmation){
+    public void consumePaymentSuccessNotification(PaymentConfirmation paymentConfirmation) throws MessagingException {
         log.info("Consuming message from payment-topic "+paymentConfirmation);
         notificationRepository.save(
                 Notification.builder()
@@ -31,12 +33,20 @@ public class NotificationConsumer {
 
                         .build()
         );
+        // send email
+        var customerName =  paymentConfirmation.customerFirstName() + "  "+ paymentConfirmation.customerLastName();
+        emailService.sendPaymentSuccessEmail(
+                paymentConfirmation.customerEmail(),
+                customerName,
+                paymentConfirmation.amount(),
+                paymentConfirmation.oderReference()
+        );
 
     }
-    // todo send email
+
 
     @KafkaListener(topics = "order-topic")
-    public void consumeOderConfirmationNotification(OrderConfirmation orderConfirmation){
+    public void consumeOderConfirmationNotification(OrderConfirmation orderConfirmation) throws MessagingException {
         log.info("Consuming message from order-topic "+orderConfirmation);
         notificationRepository.save(
                 Notification.builder()
@@ -46,9 +56,18 @@ public class NotificationConsumer {
 
                         .build()
         );
+        //send email
+
+        var customerName =  orderConfirmation.customer().firstname() + "  "+ orderConfirmation.customer().lastname();
+        emailService.sendOrderConfirmationEmail(
+                orderConfirmation.customer().email(),
+                customerName,
+                orderConfirmation.totalAmount(),
+                orderConfirmation.oderReference(),
+                orderConfirmation.products()
+        );
 
     }
-    // todo send email
 
 }
 
