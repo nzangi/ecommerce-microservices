@@ -24,11 +24,11 @@ spring:
       group-id: paymentGroup,orderGroup
       auto-offset-reset: earliest
 
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserialization
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserialization
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: '*'
-        spring.json.type.mapping: orderConfirmation:com.nzangi.ecommerce.kafka.OrderConfirmation,paymentConfirmation:com.nzangi.ecommerce.kafka.payment.PaymentConfirmation
+        spring.json.type.mapping: orderConfirmation:com.nzangi.ecommerce.kafka.order.OrderConfirmation,paymentConfirmation:com.nzangi.ecommerce.kafka.payment.PaymentConfirmation
 
   mail:
     host: localhost

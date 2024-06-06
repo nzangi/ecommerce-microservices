@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/v1/order-lines")
 @RequiredArgsConstructor
 
-public class OrderController {
+public class OrderLineController {
     private final OrderLineService orderLineService;
     @GetMapping("/order/{order-id}")
     public ResponseEntity<List<OrderLineResponse>> findOrdersById(

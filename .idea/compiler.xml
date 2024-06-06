@@ -10,6 +10,7 @@
         <module name="config-server" />
         <module name="notification" />
         <module name="product" />
+        <module name="api-gateway" />
         <module name="payment" />
         <module name="service-registry" />
         <module name="customer" />
@@ -19,6 +20,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api-gateway" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="customer" options="-parameters" />
       <module name="notification" options="-parameters" />
