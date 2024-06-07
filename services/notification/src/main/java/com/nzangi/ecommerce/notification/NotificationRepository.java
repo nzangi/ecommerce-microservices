@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 *
 * */
 
-@Repository
+//@Repository
 public interface NotificationRepository extends MongoRepository<Notification,String> {
 
 }
