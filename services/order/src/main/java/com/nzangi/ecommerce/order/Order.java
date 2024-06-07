@@ -25,7 +25,7 @@ public class Order {
     private Integer id;
 
     @Column(unique = true,  nullable = false)
-    private String reference;
+    private String orderReference;
 
     private BigDecimal totalAmount;
 

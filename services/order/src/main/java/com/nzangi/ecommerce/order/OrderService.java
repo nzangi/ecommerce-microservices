@@ -62,7 +62,7 @@ public class OrderService {
                 request.amount(),
                 request.paymentMethod(),
                 order.getId(),
-                order.getReference(),
+                order.getOrderReference(),
                 customer
         );
 
@@ -73,7 +73,7 @@ public class OrderService {
 
         orderProducer.sendOrderConfirmation(
                 new OrderConfirmation(
-                        request.reference(),
+                        request.orderReference(),
                         request.amount(),
                         request.paymentMethod(),
                         customer,

@@ -22,6 +22,8 @@ public class NotificationConsumer {
     private static final Logger log = LoggerFactory.getLogger(NotificationConsumer.class);
     private final NotificationRepository notificationRepository;
     private final EmailService emailService;
+
+
     @KafkaListener(topics = "payment-topic")
     public void consumePaymentSuccessNotification(PaymentConfirmation paymentConfirmation) throws MessagingException {
         log.info("Consuming message from payment-topic "+paymentConfirmation);
@@ -30,16 +32,16 @@ public class NotificationConsumer {
                         .type(NotificationType.PAYMENT_CONFIRMATION)
                         .notificationDate(LocalDateTime.now())
                         .paymentConfirmation(paymentConfirmation)
-
                         .build()
         );
+
         // send email
         var customerName =  paymentConfirmation.customerFirstName() + "  "+ paymentConfirmation.customerLastName();
         emailService.sendPaymentSuccessEmail(
                 paymentConfirmation.customerEmail(),
                 customerName,
                 paymentConfirmation.amount(),
-                paymentConfirmation.oderReference()
+                paymentConfirmation.orderReference()
         );
 
     }
@@ -53,17 +55,16 @@ public class NotificationConsumer {
                         .type(NotificationType.ORDER_CONFIRMATION)
                         .notificationDate(LocalDateTime.now())
                         .orderConfirmation(orderConfirmation)
-
                         .build()
         );
-        //send email
 
+        //send email
         var customerName =  orderConfirmation.customer().firstname() + "  "+ orderConfirmation.customer().lastname();
         emailService.sendOrderConfirmationEmail(
                 orderConfirmation.customer().email(),
                 customerName,
                 orderConfirmation.totalAmount(),
-                orderConfirmation.oderReference(),
+                orderConfirmation.orderReference(),
                 orderConfirmation.products()
         );
 

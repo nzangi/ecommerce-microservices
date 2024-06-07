@@ -5,7 +5,6 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -23,6 +22,7 @@ import java.util.Map;
 @Slf4j
 @RequiredArgsConstructor
 public class EmailService {
+
     private final JavaMailSender mailSender;
     private final SpringTemplateEngine templateEngine;
 
@@ -37,7 +37,7 @@ public class EmailService {
 
         MimeMessageHelper messageHelper =
                 new MimeMessageHelper(mimeMessage,MimeMessageHelper.MULTIPART_MODE_RELATED, StandardCharsets.UTF_8.name());
-        messageHelper.setFrom("contact@nzangimuoki@gmail.com");
+        messageHelper.setFrom("nzangimuoki284@gmail.com");
 
         final String templateName = EmailTemplates.PAYMENT_CONFIRMATION.getTemplate();
 
@@ -45,6 +45,9 @@ public class EmailService {
         variables.put("customerName",customerName);
         variables.put("amount",amount);
         variables.put("orderReference",orderReference);
+        log.info("INFO - PAYMENT ORDER REFERENCE IS :  {}",orderReference);
+
+
 
         Context context = new Context();
         context.setVariables(variables);
@@ -56,7 +59,7 @@ public class EmailService {
             messageHelper.setText(htmlTemplate,true);
             messageHelper.setTo(destinationEmail);
             mailSender.send(mimeMessage);
-            log.info(String.format("INFO - PAYMENT CONFIRMATION successfully send to %s with template %s "),destinationEmail,templateName);
+            log.info("INFO - PAYMENT CONFIRMATION successfully send to {} with template {} ",destinationEmail,templateName);
 
         }catch (MessagingException exception){
             log.info("WARNING - Cannot send E-mail to {}",destinationEmail);
@@ -70,13 +73,14 @@ public class EmailService {
             String customerName,
             BigDecimal amount,
             String orderReference,
+
             List<Product> products
 
     ) throws MessagingException {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper messageHelper =
                 new MimeMessageHelper(mimeMessage,MimeMessageHelper.MULTIPART_MODE_RELATED, StandardCharsets.UTF_8.name());
-        messageHelper.setFrom("contact@nzangimuoki@gmail.com");
+        messageHelper.setFrom("nzangimuoki284@gmail.com");
 
         final String templateName = EmailTemplates.ORDER_CONFIRMATION.getTemplate();
 
@@ -85,6 +89,9 @@ public class EmailService {
         variables.put("amount",amount);
         variables.put("orderReference",orderReference);
         variables.put("products",products);
+
+        log.info("INFO - ORDER REFERENCE IS :  {}",orderReference);
+
 
 
         Context context = new Context();
@@ -97,7 +104,7 @@ public class EmailService {
             messageHelper.setText(htmlTemplate,true);
             messageHelper.setTo(destinationEmail);
             mailSender.send(mimeMessage);
-            log.info(String.format("INFO - ORDER CONFIRMATION successfully send to %s with template %s "),destinationEmail,templateName);
+            log.info("INFO - ORDER CONFIRMATION successfully send to {} with template {}",destinationEmail,templateName);
 
         }catch (MessagingException exception){
             log.info("WARNING - Cannot send E-mail to {}",destinationEmail);
