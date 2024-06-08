@@ -28,3 +28,8 @@ eureka:
       defaultZone: http://localhost:8778/eureka/
   instance:
     hostname: localhost
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0

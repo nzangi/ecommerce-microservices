@@ -8,6 +8,11 @@ eureka:
   instance:
     hostname: localhost
 
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
 spring:
   data:
     mongodb:
@@ -16,7 +21,7 @@ spring:
       host: localhost
       port: 27017
       authentication-database: admin
-      database: customer
+      database: notification
 
   kafka:
     consumer:

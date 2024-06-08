@@ -8,6 +8,11 @@ eureka:
   instance:
     hostname: localhost
 
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver

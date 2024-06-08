@@ -8,6 +8,11 @@ eureka:
   instance:
     hostname: localhost
 
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
 spring:
   data:
     mongodb:
