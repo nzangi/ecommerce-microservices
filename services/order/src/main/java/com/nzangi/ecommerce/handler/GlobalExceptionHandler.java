@@ -13,6 +13,9 @@ import org.springframework.web.servlet.View;
 import java.util.HashMap;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
+/**
+ * Global Exception Handler
+ * */
 
 @RestControllerAdvice
 

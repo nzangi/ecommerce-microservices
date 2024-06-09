@@ -1,5 +1,8 @@
 package com.nzangi.ecommerce.payment;
 
+/**
+ * Payment Method
+ */
 public enum PaymentMethod {
     PAYPAL,
     CREDIT_CARD,

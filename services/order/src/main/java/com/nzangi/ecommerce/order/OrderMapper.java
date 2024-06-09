@@ -2,9 +2,14 @@ package com.nzangi.ecommerce.order;
 
 import org.springframework.stereotype.Service;
 
-@Service
 
+/**
+ * Order Mapper Class
+ */
+@Service
 public class OrderMapper {
+    // Data from OrderRequest to  Order Entity
+
     public Order toOrder(OrderRequest request) {
         return Order.builder()
                 .id(request.id())
@@ -14,6 +19,8 @@ public class OrderMapper {
                 .paymentMethod(request.paymentMethod())
                 .build();
     }
+
+    // Data from  Order Entity to OrderResponse
 
     public OrderResponse fromOder(Order order) {
         return new OrderResponse(

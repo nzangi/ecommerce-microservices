@@ -14,6 +14,10 @@ import java.util.HashMap;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
+/**
+ * GlobalExceptionHandler
+ */
+
 @RestControllerAdvice
 
 public class GlobalExceptionHandler {

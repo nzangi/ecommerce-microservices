@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Slf4j
 
+// Notification Producer
 public class NotificationProducer {
     private final KafkaTemplate<String, PaymentNotificationRequest> kafkaTemplate;
     public void sendNotification(PaymentNotificationRequest request){

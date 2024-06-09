@@ -5,6 +5,10 @@ import com.nzangi.ecommerce.notification.PaymentNotificationRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+/**
+ * Payment Service
+ */
+
 @Service
 @RequiredArgsConstructor
 public class PaymentService {
@@ -12,9 +16,10 @@ public class PaymentService {
 
     private final NotificationProducer notificationProducer;
 
-
     private final PaymentMapper mapper;
 
+
+    // Create Payment
     public Integer createPayment(PaymentRequest request) {
         var payment = paymentRepository.save(mapper.toPayment(request));
         notificationProducer.sendNotification(

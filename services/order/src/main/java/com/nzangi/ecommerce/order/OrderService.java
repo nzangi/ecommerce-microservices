@@ -18,6 +18,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Order Service
+ */
 @Service
 @RequiredArgsConstructor
 public class OrderService {
@@ -28,6 +31,7 @@ public class OrderService {
     private final OrderLineService orderLineService;
     private final OrderProducer orderProducer;
     private final PaymentClient paymentClient;
+
 
 
     public Integer createOrder(OrderRequest request) {
@@ -85,6 +89,7 @@ public class OrderService {
         return order.getId();
     }
 
+    // find all orders
     public List<OrderResponse> findAllOrders() {
 
         return orderRepository.findAll()
@@ -93,6 +98,7 @@ public class OrderService {
                 .collect(Collectors.toList());
     }
 
+    // find order by Id
     public OrderResponse findOrderById(Integer orderId) {
         return orderRepository.findById(orderId)
                 .map(mapper::fromOder)

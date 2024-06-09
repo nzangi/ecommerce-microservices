@@ -3,10 +3,13 @@ package com.nzangi.ecommerce.product;
 import com.nzangi.ecommerce.category.Category;
 import org.springframework.stereotype.Service;
 
+/**
+ * Product Mapper
+ */
 @Service
 
 public class ProductMapper {
-
+    // From ProductRequest to Product Entity
     public Product toProduct(ProductRequest request) {
         return Product.builder()
                 .id(request.id())
@@ -17,6 +20,8 @@ public class ProductMapper {
                 .category(Category.builder().id(request.categoryId()).build())
                 .build();
     }
+
+    // From Product Entity to ProductResponse
 
     public ProductResponse toProductResponse(Product product) {
         return new ProductResponse(

@@ -11,6 +11,10 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Order Entity
+ * */
+
 @AllArgsConstructor
 @Builder
 @Getter
@@ -19,6 +23,8 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
 @Table(name = "customer_order")
+
+
 public class Order {
     @Id
     @GeneratedValue

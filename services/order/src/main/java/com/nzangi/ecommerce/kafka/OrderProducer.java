@@ -8,12 +8,17 @@ import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
-
+/**
+ * Order Producer.
+ * It sends data to notification Consumer
+ * */
 @Service
 @RequiredArgsConstructor
 public class OrderProducer {
     private static final Logger log = LoggerFactory.getLogger(OrderProducer.class);
     private final KafkaTemplate<String,OrderConfirmation> kafkaTemplate;
+
+    // Send Order Confirmation
 
     public void sendOrderConfirmation(OrderConfirmation orderConfirmation){
         log.info("Sending Order Confirmation");

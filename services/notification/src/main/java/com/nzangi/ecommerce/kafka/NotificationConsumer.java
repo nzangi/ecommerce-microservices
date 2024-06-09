@@ -14,6 +14,9 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+/**
+ * Notification Consumer from Kafka
+ * */
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +26,7 @@ public class NotificationConsumer {
     private final NotificationRepository notificationRepository;
     private final EmailService emailService;
 
-
+    // payment topic
     @KafkaListener(topics = "payment-topic")
     public void consumePaymentSuccessNotification(PaymentConfirmation paymentConfirmation) throws MessagingException {
         log.info("Consuming message from payment-topic "+paymentConfirmation);
@@ -46,7 +49,7 @@ public class NotificationConsumer {
 
     }
 
-
+    // order-topic
     @KafkaListener(topics = "order-topic")
     public void consumeOderConfirmationNotification(OrderConfirmation orderConfirmation) throws MessagingException {
         log.info("Consuming message from order-topic "+orderConfirmation);

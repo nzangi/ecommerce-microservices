@@ -6,6 +6,10 @@ import lombok.*;
 
 import java.util.List;
 
+/**
+ * Category Entity
+ */
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

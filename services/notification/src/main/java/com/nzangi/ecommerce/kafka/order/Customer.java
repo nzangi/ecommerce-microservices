@@ -1,9 +1,8 @@
 package com.nzangi.ecommerce.kafka.order;
 
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
 
+// Customer Record for Kafka
 public record Customer(
         String id,
         String firstname,

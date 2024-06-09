@@ -1,7 +1,7 @@
 package com.nzangi.ecommerce.payment;
 
 import org.springframework.stereotype.Service;
-
+// Mapper to Payment Mapper
 @Service
 public class PaymentMapper {
     public Payment toPayment(PaymentRequest request) {

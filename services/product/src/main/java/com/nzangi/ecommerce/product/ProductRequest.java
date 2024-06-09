@@ -5,6 +5,15 @@ import jakarta.validation.constraints.Positive;
 
 import java.math.BigDecimal;
 
+/**
+ *
+ * @param id
+ * @param name
+ * @param description
+ * @param availableQuantity
+ * @param price
+ * @param categoryId
+ */
 public record ProductRequest(
         Integer id,
         @NotNull(message = "Product name is required!")

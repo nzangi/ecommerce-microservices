@@ -4,6 +4,13 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
+/**
+ *
+ * @param id
+ * @param firstname
+ * @param lastname
+ * @param email
+ */
 
 @Validated
 public record Customer(

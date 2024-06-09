@@ -4,6 +4,9 @@ import com.nzangi.ecommerce.order.Order;
 import jakarta.persistence.*;
 import lombok.*;
 
+/**
+ * OrderLine Entity
+ */
 @AllArgsConstructor
 @Builder
 @Getter

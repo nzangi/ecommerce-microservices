@@ -12,9 +12,10 @@ import org.springframework.web.servlet.View;
 
 import java.util.HashMap;
 
+// Global error handling
 @RestControllerAdvice
-
 public class GlobalExceptionHandler {
+
     private final View error;
 
     public GlobalExceptionHandler(View error) {

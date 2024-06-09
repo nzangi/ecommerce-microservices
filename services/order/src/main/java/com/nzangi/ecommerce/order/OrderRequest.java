@@ -9,6 +9,15 @@ import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ *
+ * @param id
+ * @param orderReference
+ * @param amount
+ * @param paymentMethod
+ * @param customerId
+ * @param products
+ */
 public record OrderRequest(
         Integer id,
         String orderReference,

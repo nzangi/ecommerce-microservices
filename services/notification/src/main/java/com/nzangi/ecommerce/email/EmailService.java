@@ -18,14 +18,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+//  Email Service
+
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class EmailService {
-
+    // DI of mailSender and templateEngine
     private final JavaMailSender mailSender;
     private final SpringTemplateEngine templateEngine;
 
+    /**
+     * Async sendPaymentSuccessEmail Method
+     */
     @Async
     public void sendPaymentSuccessEmail(
             String destinationEmail,
@@ -37,6 +44,8 @@ public class EmailService {
 
         MimeMessageHelper messageHelper =
                 new MimeMessageHelper(mimeMessage,MimeMessageHelper.MULTIPART_MODE_RELATED, StandardCharsets.UTF_8.name());
+
+        // Email send from
         messageHelper.setFrom("nzangimuoki284@gmail.com");
 
         final String templateName = EmailTemplates.PAYMENT_CONFIRMATION.getTemplate();
@@ -67,6 +76,9 @@ public class EmailService {
 
     }
 
+    /**
+     * Async sendOrderConfirmationEmail Method
+     */
     @Async
     public void sendOrderConfirmationEmail(
             String destinationEmail,
@@ -80,9 +92,14 @@ public class EmailService {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper messageHelper =
                 new MimeMessageHelper(mimeMessage,MimeMessageHelper.MULTIPART_MODE_RELATED, StandardCharsets.UTF_8.name());
+
+        // Email send from
         messageHelper.setFrom("nzangimuoki284@gmail.com");
 
+        // Get the ORDER CONFIRMATION template
         final String templateName = EmailTemplates.ORDER_CONFIRMATION.getTemplate();
+
+        //Map the ORDER CONFIRMATION variables
 
         Map<String,Object> variables = new HashMap<>();
         variables.put("customerName",customerName);
@@ -90,6 +107,7 @@ public class EmailService {
         variables.put("orderReference",orderReference);
         variables.put("products",products);
 
+        // logging information
         log.info("INFO - ORDER REFERENCE IS :  {}",orderReference);
 
 

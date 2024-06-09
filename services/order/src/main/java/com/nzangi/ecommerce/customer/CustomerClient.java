@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Optional;
 
+/**
+ * Customer Client. Get the customer details from Customer
+ * */
 @FeignClient(
         name = "customer-service",
         url = "${application.config.customer-url}"

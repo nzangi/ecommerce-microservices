@@ -3,7 +3,7 @@ package com.nzangi.ecommerce.customer;
 import lombok.*;
 import org.springframework.validation.annotation.Validated;
 
-//
+// This is the class to store the address
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
